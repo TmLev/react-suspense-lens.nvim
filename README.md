@@ -1,4 +1,4 @@
-# react-suspense-lens
+# react-suspense-lens.nvim
 
 Highlights React components that likely require a Suspense boundary:
 
@@ -18,9 +18,9 @@ Highlights React components that likely require a Suspense boundary:
 
 ```lua
 {
-  'TmLev/react-suspense-lens',
+  'TmLev/react-suspense-lens.nvim',
   dependencies = { 'nvim-treesitter/nvim-treesitter' },
-  main = 'react_suspense_lens',
+  main = 'react-suspense-lens',
   opts = {},
 }
 ```
@@ -44,12 +44,13 @@ Otherwise run `:helptags ALL`.
 
 ## Health Check
 
-- `:checkhealth react_suspense_lens`
+- `:checkhealth react-suspense-lens`
+  - Backwards-compatible: `:checkhealth react_suspense_lens`
 
 ## Configuration
 
 ```lua
-require('react_suspense_lens').setup({
+require('react-suspense-lens').setup({
   -- Highlight group used for JSX tag extmarks.
   -- Default: "ReactSuspenseLensAsyncComponent"
   hl_group = 'ReactSuspenseLensAsyncComponent',
