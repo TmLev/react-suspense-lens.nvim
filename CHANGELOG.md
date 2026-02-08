@@ -4,6 +4,11 @@
 
 - TBD
 
+## 0.2.0 - 2026-02-08
+
+- Breaking: Lua module name is now `react-suspense-lens` (kebab-case).
+  - `react_suspense_lens` alias removed.
+
 ## 0.1.0 - 2026-02-08
 
 - Highlight JSX component tags that likely require a Suspense boundary.
