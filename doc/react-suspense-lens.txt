@@ -112,7 +112,6 @@ TROUBLESHOOTING                                                 *react-suspense-
 
 - Health:
   - :checkhealth react-suspense-lens
-  - Backwards-compatible: :checkhealth react_suspense_lens
 
 - No highlights:
   - Ensure your TS LSP is attached to the buffer (:LspInfo)

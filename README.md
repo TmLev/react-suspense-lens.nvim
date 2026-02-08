@@ -45,7 +45,6 @@ Otherwise run `:helptags ALL`.
 ## Health Check
 
 - `:checkhealth react-suspense-lens`
-  - Backwards-compatible: `:checkhealth react_suspense_lens`
 
 ## Configuration
 

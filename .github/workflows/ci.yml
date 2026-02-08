@@ -20,4 +20,3 @@ jobs:
           nvim --version
           nvim --headless -u NONE +"set rtp+=." +"lua assert(loadfile('lua/react-suspense-lens/init.lua'))" +q
           nvim --headless -u NONE +"set rtp+=." +"lua require('react-suspense-lens')" +q
-          nvim --headless -u NONE +"set rtp+=." +"lua require('react_suspense_lens')" +q
