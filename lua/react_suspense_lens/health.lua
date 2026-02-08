@@ -23,7 +23,7 @@ local function has_parser(lang)
 end
 
 function M.check()
-  health.start('react-suspense-lens.nvim')
+  health.start('react-suspense-lens')
 
   local v = vim.version()
   if v.major > 0 or v.minor >= 10 then

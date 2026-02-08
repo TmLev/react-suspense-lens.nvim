@@ -2,7 +2,7 @@
 
 INTRODUCTION                                                    *react-suspense-lens-intro*
 
-react-suspense-lens.nvim highlights JSX component tags that likely require
+react-suspense-lens highlights JSX component tags that likely require
 a React Suspense boundary.
 
 Signals:
@@ -21,7 +21,7 @@ SETUP                                                           *react-suspense-
 With lazy.nvim:
 
   {
-    "TmLev/react-suspense-lens.nvim",
+    "TmLev/react-suspense-lens",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {},
   }

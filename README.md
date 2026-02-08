@@ -1,4 +1,4 @@
-# react-suspense-lens.nvim
+# react-suspense-lens
 
 Highlights React components that likely require a Suspense boundary:
 
@@ -18,7 +18,7 @@ Highlights React components that likely require a Suspense boundary:
 
 ```lua
 {
-  'TmLev/react-suspense-lens.nvim',
+  'TmLev/react-suspense-lens',
   dependencies = { 'nvim-treesitter/nvim-treesitter' },
   main = 'react_suspense_lens',
   opts = {},
