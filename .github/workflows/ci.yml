@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  nvim-parse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Neovim
+        uses: MunifTanjim/setup-neovim-action@v1
+        with:
+          neovim-version: stable
+
+      - name: Lua Parse
+        run: |
+          nvim --version
+          nvim --headless -u NONE +"set rtp+=." +"lua assert(loadfile('lua/react_suspense_lens/init.lua'))" +q
+          nvim --headless -u NONE +"set rtp+=." +"lua require('react_suspense_lens')" +q
+
