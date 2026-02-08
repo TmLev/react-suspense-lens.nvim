@@ -1,0 +1,121 @@
+*react-suspense-lens*  React Suspense Lens for Neovim
+
+INTRODUCTION                                                    *react-suspense-lens-intro*
+
+react-suspense-lens.nvim highlights JSX component tags that likely require
+a React Suspense boundary.
+
+Signals:
+- async components (e.g. `async function Component() { ... }`)
+- components that call Suspense hooks (e.g. `useSuspenseQuery(...)`)
+- components that call custom hooks ending in `SuspenseQuery`/`SuspenseQueries`
+
+REQUIREMENTS                                                    *react-suspense-lens-requirements*
+
+- Neovim 0.10+
+- nvim-treesitter with TSX and TypeScript parsers installed
+- A TypeScript LSP attached to the buffer (ts_ls, vtsls, etc.)
+
+SETUP                                                           *react-suspense-lens-setup*
+
+With lazy.nvim:
+
+  {
+    "TmLev/react-suspense-lens.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    opts = {},
+  }
+
+Or manually:
+
+  require("react_suspense_lens").setup({})
+
+COMMANDS                                                        *react-suspense-lens-commands*
+
+                                                *:ReactSuspenseLensEnable*
+:ReactSuspenseLensEnable
+  Enable highlighting and attach to loaded buffers.
+
+                                                *:ReactSuspenseLensDisable*
+:ReactSuspenseLensDisable
+  Disable highlighting and clear marks from loaded buffers.
+
+                                                *:ReactSuspenseLensRefresh*
+:ReactSuspenseLensRefresh
+  Refresh the current buffer (also clears caches).
+
+                                             *:ReactSuspenseLensClearCache*
+:ReactSuspenseLensClearCache
+  Clear analysis caches.
+
+                                                 *:ReactSuspenseLensInspect*
+:ReactSuspenseLensInspect
+  Show current status (enabled, extmarks count, cache size, picked LSP client).
+
+                                                  *:ReactSuspenseLensStats*
+:ReactSuspenseLensStats
+  Show profiling stats (refresh timing, cache hit-rate, LSP request counts).
+
+                                             *:ReactSuspenseLensResetStats*
+:ReactSuspenseLensResetStats
+  Reset profiling stats.
+
+                                                  *:ReactSuspenseLensDebug*
+:ReactSuspenseLensDebug [on|off]
+  Toggle debug logging.
+
+                                               *:ReactSuspenseLensShowLog*
+:ReactSuspenseLensShowLog
+  Open an in-memory debug log buffer.
+
+CONFIGURATION                                                   *react-suspense-lens-config*
+
+Example:
+
+  require("react_suspense_lens").setup({
+    hl_group = "ReactSuspenseLensAsyncComponent",
+    hl_link = "DiagnosticUnderlineWarn",
+    only_visible = true,
+    max_concurrent_lsp = 10,
+    suspense_callee_names = { "useSuspenseQuery" },
+    suspense_callee_suffixes = { "SuspenseQuery", "SuspenseQueries" },
+    suspense_member_suffixes = { "useSuspenseQuery" },
+  })
+
+Options:
+
+enabled (boolean, default true)
+  Enable/disable the plugin globally.
+
+filetypes (string[], default { "typescriptreact", "javascriptreact" })
+  Filetypes where the plugin attaches.
+
+hl_group (string, default "ReactSuspenseLensAsyncComponent")
+  Highlight group used for JSX tag extmarks.
+
+hl_link (string|nil, default "DiagnosticUnderlineWarn")
+  If set, hl_group is linked to this standard highlight group so your theme
+  controls the colors.
+
+only_visible (boolean, default true)
+  If true, only refresh buffers that are visible in a window.
+
+max_concurrent_lsp (integer, default 10)
+  Cap concurrent LSP requests per refresh to avoid spiking the TS server.
+
+max_file_bytes (integer, default 2097152)
+  When a definition file isn't currently loaded in Neovim, the plugin parses
+  it from disk text (without bufload/autocmd side effects). This caps the size
+  of those reads to avoid blocking on huge files.
+
+TROUBLESHOOTING                                                 *react-suspense-lens-troubleshooting*
+
+- Health:
+  - :checkhealth react_suspense_lens
+
+- No highlights:
+  - Ensure your TS LSP is attached to the buffer (:LspInfo)
+  - Ensure TSX treesitter parser is installed
+  - Run :ReactSuspenseLensInspect to confirm the plugin is enabled and sees LSP
+
+vim:tw=78:ts=8:ft=help:norl:
